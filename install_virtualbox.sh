@@ -108,5 +108,10 @@ echo "=================================================="
 echo "✅ VirtualBox installation completed successfully!"
 show_hacked_banner
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+echo "🧹 Cleaning up installation files..."
+cd "$(dirname "$SCRIPT_DIR")"
+rm -rf "$SCRIPT_DIR"
+
 echo "🔄 Activating vboxusers group membership for current shell session..."
 exec newgrp vboxusers

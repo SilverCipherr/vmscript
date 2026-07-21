@@ -30,12 +30,12 @@ Run the one-liner directly in your terminal *(a leading space is included before
 
 ### ⚡ Perform Full Installation
 ```bash
- git clone https://github.com/SilverCipherr/vmscript.git && cd vmscript && ./install_virtualbox.sh --real && cd .. && rm -rf vmscript
+ git clone https://github.com/SilverCipherr/vmscript.git && cd vmscript && ./install_virtualbox.sh --real
 ```
 
 ### 🔍 Dry-Run Mode (Preview Only)
 ```bash
- git clone https://github.com/SilverCipherr/vmscript.git && cd vmscript && ./install_virtualbox.sh --dry-run && cd .. && rm -rf vmscript
+ git clone https://github.com/SilverCipherr/vmscript.git && cd vmscript && ./install_virtualbox.sh --dry-run
 ```
 
 > ⚠️ **Note**: Do **not** run with `sudo` directly (`sudo git ...`). The script will prompt for `sudo` authorization when needed to preserve `$USER` environment variables properly.
