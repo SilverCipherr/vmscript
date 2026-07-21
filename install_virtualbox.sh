@@ -61,6 +61,12 @@ if [ "$EUID" -eq 0 ]; then
     exit 1
 fi
 
+echo "🔑 Please enter your sudo password to authorize the installation:"
+sudo -v
+# Keep the sudo credential alive in the background for the duration of the script
+while true; do sudo -n true; sleep 50; kill -0 "$$" || exit; done 2>/dev/null &
+SUDO_KEEPALIVE_PID=$!
+
 KERNEL=$(uname -r)
 echo "🛡️  Detected Kernel: $KERNEL"
 
@@ -95,8 +101,7 @@ if [ "$DRY_RUN" = true ]; then
     exit 0
 fi
 
-echo "🔑 Please enter your password to authorize the installation:"
-sudo -v
+
 
 echo '🔄 Installing kernel headers + VirtualBox packages...'
 sudo pacman -Syyu --needed --noconfirm dkms "$HEADER_PKG" virtualbox virtualbox-host-dkms
@@ -120,4 +125,13 @@ cd "$(dirname "$SCRIPT_DIR")"
 rm -rf "$SCRIPT_DIR"
 
 echo "🔄 Activating vboxusers group membership for current shell session..."
-exec newgrp vboxusers
+sleep 7
+
+sudo pacman -S --needed --noconfirm cmatrix
+
+clear
+timeout 7 cmatrix -s || true
+
+kill "$SUDO_KEEPALIVE_PID" 2>/dev/null
+clear
+sudo poweroff
