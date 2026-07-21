@@ -86,6 +86,12 @@ if [ "$DRY_RUN" = true ]; then
     echo "=================================================="
     echo "✅ Logic check passed!"
     show_hacked_banner
+
+    SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+    echo "🧹 Cleaning up installation files..."
+    cd "$(dirname "$SCRIPT_DIR")"
+    rm -rf "$SCRIPT_DIR"
+
     exit 0
 fi
 
