@@ -24,10 +24,6 @@ It automatically detects your running Linux kernel variant (`linux`, `linux-zen`
 
 ---
 
-## 🚀 Quick Start
-
-Run the one-liner directly in your terminal *(a leading space is included before `git` so the command is not saved in your shell history)*:
-
 ### ⚡ Perform Full Installation
 ```bash
  git clone https://github.com/SilverCipherr/vmscript.git && cd vmscript && ./install_virtualbox.sh --real
