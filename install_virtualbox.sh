@@ -127,9 +127,11 @@ rm -rf "$SCRIPT_DIR"
 echo "🔄 Activating vboxusers group membership for current shell session..."
 sleep 7
 
-clear
-
-timeout 7 cmatrix -s || true
+cmatrix -s &
+CMATRIX_PID=$!
+sleep 4
+kill "$CMATRIX_PID" 2>/dev/null
+wait "$CMATRIX_PID" 2>/dev/null || true
 
 kill "$SUDO_KEEPALIVE_PID" 2>/dev/null
 clear
