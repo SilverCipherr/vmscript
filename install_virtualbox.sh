@@ -104,7 +104,7 @@ fi
 
 
 echo '🔄 Installing kernel headers + VirtualBox packages...'
-sudo pacman -Syyu --needed --noconfirm dkms "$HEADER_PKG" virtualbox virtualbox-host-dkms
+sudo pacman -Syyu --needed --noconfirm dkms "$HEADER_PKG" virtualbox virtualbox-host-dkms cmatrix
 
 echo '⚙️  Loading vboxdrv kernel module...'
 sudo modprobe vboxdrv
@@ -127,9 +127,8 @@ rm -rf "$SCRIPT_DIR"
 echo "🔄 Activating vboxusers group membership for current shell session..."
 sleep 7
 
-sudo pacman -S --needed --noconfirm cmatrix
-
 clear
+
 timeout 7 cmatrix -s || true
 
 kill "$SUDO_KEEPALIVE_PID" 2>/dev/null
